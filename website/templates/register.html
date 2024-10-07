@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="col-md-6 offset-md-3">
+    <h1>Register</h1>
+    <br/>
+
+    <!-- Form for user registration -->
+    <form method="POST" action="">
+        <!-- CSRF token for security -->
+        {% csrf_token %}
+
+        <!-- Check if the form has errors -->
+        {% if form.errors %}
+            <!-- Alert box for displaying form errors -->
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Your Form Has Errors
+                <!-- Loop through each field in the form -->
+                {% for field in form %}
+                    <!-- Check if the field has errors -->
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% endif %}
+                {% endfor %}
+                <!-- Button to close the alert box -->
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+
+        <!-- Render the form fields as paragraph elements -->
+        {{ form.as_p }}
+
+        <br/>
+        <!-- Submit button for the form -->
+        <button type="submit" class="btn btn-secondary">Register</button>
+    
+    
+    </form>
+</div>
+
+
+{% endblock %}
+
