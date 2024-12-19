@@ -10,21 +10,21 @@ def home(request):
         username = request.POST['username']
         password = request.POST['password']
         
-        # Authenticate the user
+       
         user = authenticate(request, username=username, password=password)
         
         if user is not None:
-            # If the user is authenticated, log them in
+            
             login(request, user)
-            # Redirect to a success page
+         
             messages.success(request, "You Have Been Logged In..")
 
-            return redirect('home')  # Replace 'success_url' with your actual success URL
+            return redirect('home') 
         else:
-            # If authentication fails, add an error message
+
             messages.error(request, 'There Was An Error Logging In, Please Try Again.')
     
-    # Render the login form
+   
     return render(request, 'home.html' , {'records':records})
 
 def login_user(request):
@@ -53,7 +53,7 @@ def register_user(request):
 
 def customer_record(request, pk):
     if request.user.is_authenticated:
-        # look up records
+    
         customer_record = Record.objects.get(id=pk)
         return render(request, 'record.html', {'customer_record': customer_record})
     else:
